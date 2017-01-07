@@ -28,7 +28,7 @@ Player.prototype.registerTimelineAndCursor = function(timeline, cursor) {
 		if(!elem.pressed)
 			return;
 
-		var rect = evt.target.getBoundingClientRect();
+		var rect = elem.getBoundingClientRect();
 		var norm = (evt.clientX - rect.left) / rect.width;
 
 		this.audio.currentTime = norm * this.audio.duration;
@@ -46,6 +46,7 @@ Player.prototype.registerTimelineAndCursor = function(timeline, cursor) {
 
 		cursorline.style['margin-left'] = (100 * this.audio.currentTime / this.audio.duration) + '%';
 	};
+};
 
 Player.prototype.registerPrevButton = function(prev) {
 	document.getElementById(prev).onclick = () => {
