@@ -1,15 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 function Player() {
 	this.currentSong = 0;
 	this.songs = [];
 	this.audio = document.createElement('audio');
 	this.audio.autoplay = '';
 	this.audio.ontimeupdate = () => {};
+	this.audio.onended = () => {
+		this.currentSong = (this.currentSong + 1) % this.songs.length;
+		this.setCurrentSong(this.songs[this.currentSong]);
+		this.audio.play();
+	};
 }
 
 Player.prototype.registerPlayPauseButton = function(on_off) {
