@@ -9,6 +9,7 @@ function Player() {
 	this.songs = [];
 	this.audio = document.createElement('audio');
 	this.audio.autoplay = '';
+	this.audio.ontimeupdate = () => {};
 }
 
 Player.prototype.registerPlayPauseButton = function(on_off) {
@@ -53,7 +54,7 @@ Player.prototype.registerPrevButton = function(prev) {
 		if(this.currentSong <= 0)
 			return;
 		this.currentSong--;
-		this.setMusic(this.songs[this.currentSong]);
+		this.setCurrentSong(this.songs[this.currentSong]);
 	};
 };
 
@@ -62,16 +63,24 @@ Player.prototype.registerNextButton = function(next) {
 		if(this.currentSong >= this.songs.length - 1)
 			return;
 		this.currentSong++;
-		this.setMusic(this.songs[this.currentSong]);
+		this.setCurrentSong(this.songs[this.currentSong]);
 	};
 };
 
 Player.prototype.setSongs = function(songs) {
 	this.songs = songs;
 	this.currentSong = 0;
-	this.setMusic(this.songs[this.currentSong]);
+	this.setCurrentSong(this.songs[this.currentSong]);
 };
 
-Player.prototype.setMusic = function(url) {
+Player.prototype.setCurrentSong = function(url) {
+	var paused = this.audio.paused;
+
+	this.audio.currentTime = 0;
+	this.audio.ontimeupdate();
 	this.audio.src = url;
+	if(paused)
+		this.audio.pause();
+	else
+		this.audio.play();
 };
