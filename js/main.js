@@ -1,9 +1,14 @@
 (function() {
 	var player = new Player();
 
-	player.setSongs(['audio/0.m4a', 'audio/1.mp3', 'audio/2.mp3', 'audio/3.mp3', 'audio/4.mp3', 'audio/5.mp3']);
-	player.registerPrevButton('prev');
-	player.registerPlayPauseButton('play', 'pause');
-	player.registerNextButton('next');
-	player.registerTimelineAndCursor('timeline', 'cursor');
+	var rq = new XMLHttpRequest();
+	rq.onload = () => {
+		player.setSongs(JSON.parse(rq.responseText));
+		player.registerPrevButton('prev');
+		player.registerPlayPauseButton('play', 'pause');
+		player.registerNextButton('next');
+		player.registerTimelineAndCursor('timeline', 'cursor');
+	};
+	rq.open('GET', '/Player/php/ajax.php?action=songs');
+	rq.send();
 })();

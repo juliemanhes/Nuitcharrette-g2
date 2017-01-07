@@ -141,7 +141,7 @@
         
         .background {
 			display: flex;
-            background: url(../img-content/test.jpg) no-repeat;
+            background: url(../img-content/minecraft_game_mojang_ab_elements_of_survival_open_world_97799_3840x2160.jpg) no-repeat center fixed;
             background-size: cover;
             height: 100vh;
             filter: brightness(80%);

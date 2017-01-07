@@ -6,7 +6,7 @@ function Player() {
 	this.audio.ontimeupdate = () => {};
 	this.audio.onended = () => {
 		this.currentSong = (this.currentSong + 1) % this.songs.length;
-		this.setCurrentSong(this.songs[this.currentSong]);
+		this.setCurrentSong(this.songs[this.currentSong].filename);
 		this.audio.play();
 	};
 }
@@ -61,7 +61,7 @@ Player.prototype.registerPrevButton = function(prev) {
 		if(this.currentSong <= 0)
 			return;
 		this.currentSong--;
-		this.setCurrentSong(this.songs[this.currentSong]);
+		this.setCurrentSong(this.songs[this.currentSong].filename);
 	};
 };
 
@@ -70,14 +70,14 @@ Player.prototype.registerNextButton = function(next) {
 		if(this.currentSong >= this.songs.length - 1)
 			return;
 		this.currentSong++;
-		this.setCurrentSong(this.songs[this.currentSong]);
+		this.setCurrentSong(this.songs[this.currentSong].filename);
 	};
 };
 
 Player.prototype.setSongs = function(songs) {
 	this.songs = songs;
 	this.currentSong = 0;
-	this.setCurrentSong(this.songs[this.currentSong]);
+	this.setCurrentSong(this.songs[this.currentSong].filename);
 };
 
 Player.prototype.setCurrentSong = function(url) {
@@ -85,7 +85,9 @@ Player.prototype.setCurrentSong = function(url) {
 
 	this.audio.currentTime = 0;
 	this.audio.ontimeupdate();
-	this.audio.src = url;
+	var cover = 'img-content/' + this.songs[this.currentSong].cover;
+	document.getElementById('cover-play').src = cover;
+	this.audio.src = 'audio/' + url;
 	if(paused)
 		this.audio.pause();
 	else
