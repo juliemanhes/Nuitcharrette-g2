@@ -1,22 +1,33 @@
+<!doctype html>
 <html>
+
 <head>
-	<meta charset="utf-8" />
-	<title>Player</title>
+    <meta charset="UTF-8">
+    <title>Audio Player</title>
 	<script src="js/player.class.js"></script>
-	<link rel="stylesheet" href="styles/style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400" rel="stylesheet">
+    <link rel="stylesheet" href="styles/index.css">
 </head>
 
 <body>
-	<section>
-		<div id="timeline">
-			<div id="cursor"></div>
+    <main class="background">
+		<section>
+        <div id="bouton-play">
+				<img id="cover-play" src="img-content/test.jpg" alt="">
+        </div>
+		<div id="ligneaudio">
+			<div id="timeline">
+				<div id="cursor"></div>
+			</div>
 		</div>
-	</section>
-
-	<button id="prev">Précédent</button>
-	<button id="playpause">Play/Pause</button>
-	<button id="next">Suivant</button>
-
+		<div id="nav">
+			<img id="next" src="img-layout/first.svg" alt="">
+			<img id="play" src="img-layout/play.svg" alt="">
+			<img id="pause" class="hidden" src="img-layout/pause.svg" alt="">
+			<img id="prev" src="img-layout/last.svg" alt="">
+		</div>						
+		</section>
+    </main>
 	<script src="js/main.js"></script>
 </body>
 </html>

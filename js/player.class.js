@@ -11,12 +11,20 @@ function Player() {
 	};
 }
 
-Player.prototype.registerPlayPauseButton = function(on_off) {
-	document.getElementById(on_off).onclick = () => {
-		if(this.audio.paused)
+Player.prototype.registerPlayPauseButton = function(on, off) {
+	var on_elem = document.getElementById(on);
+	var off_elem = document.getElementById(off);
+
+	off_elem.onclick = on_elem.onclick = () => {
+		if(this.audio.paused) {
+			on_elem.className = "hidden";
+			off_elem.className = "";
 			this.audio.play();
-		else
+		} else {
+			off_elem.className = "hidden";
+			on_elem.className = "";
 			this.audio.pause();
+		}
 	};
 };
 
