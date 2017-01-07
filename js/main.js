@@ -5,4 +5,5 @@
 	player.registerPrevButton('prev');
 	player.registerPlayPauseButton('playpause');
 	player.registerNextButton('next');
+	player.registerTimelineAndCursor('timeline', 'cursor');
 })();
